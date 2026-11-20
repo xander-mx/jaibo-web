@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+import {site} from '../data/site';
+import CookieConsent from '../components/CookieConsent.astro';
+import Analytics from '../components/Analytics.astro';
+
+interface Props {
+    title?: string;
+    description?: string;
+    canonical?: string;
+    showBusinessSchema?: boolean;
+}
+
+const {
+    title = 'Desconchadero El Jaibo | Mariscos frescos en Guadalajara',
+    description = 'Ostiones, pata de mula, aguachile, ceviches, Jaivaso y mariscos en concha cerca del Mercado del Mar de la 34. Viernes a domingo de 9 a 5.',
+    canonical = 'https://mariscoseljaibo.com/',
+    showBusinessSchema = true,
+} = Astro.props;
+
+const jsonLd={
+ '@context':'https://schema.org','@type':'FoodEstablishment',name:site.name,url:'https://mariscoseljaibo.com',
+ image:'https://mariscoseljaibo.com/images/logo.png',telephone:'+52 33 1527 1922',
+ address:{'@type':'PostalAddress',streetAddress:'Calle Francisco de Ayza 324, frente al local 108',addressLocality:'Guadalajara',addressRegion:'Jalisco',postalCode:'44380',addressCountry:'MX'},
+ hasMap:site.maps,sameAs:[site.instagram],
+ openingHoursSpecification:[5,6,0].map(day=>({'@type':'OpeningHoursSpecification',dayOfWeek:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][day],opens:'09:00',closes:'17:00'})),
+ servesCuisine:'Mariscos',priceRange:'$'
+};
+---
+<!doctype html>
+<html lang="es-MX">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="theme-color" content="#fff8ed"/>
+        <title>{title}</title><meta name="description" content={description}/>
+        <link rel="canonical" href={canonical}/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content={title}/><meta property="og:description" content={description}/>
+        <meta property="og:url" content={canonical}/>
+        <link rel="icon" type="image/png" href="/images/logo.png"/>
+        {showBusinessSchema && (
+            <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+        )}
+    </head>
+    <body>
+        <slot />
+        <CookieConsent />
+        <Analytics />
+    </body>
+</html>

@@ -1,0 +1,88 @@
+
+---
+import { menu } from '../data/menu';
+---
+
+<section id="menu" class="section bg-white">
+    <div class="container max-w-225">
+
+        <div class="mb-9 text-center">
+            <p class="eyebrow">Nuestro menú</p>
+
+            <h2 class="section-title mt-2">
+                Mariscos para todos los gustos
+            </h2>
+
+            <p class="muted mt-3">
+                Consulta nuestras especialidades, presentaciones y precios.
+                Disponibilidad sujeta a confirmación.
+            </p>
+        </div>
+
+        <div class="space-y-3">
+
+            {menu.map((group) => (
+                    <details
+                            class="group overflow-hidden rounded-2xl border border-[#eadfd1] bg-[#fffaf3] transition-colors duration-200"
+                    >
+
+                        <summary class="flex cursor-pointer items-center justify-between gap-4 px-4 py-5 text-base font-extrabold sm:px-5 sm:text-lg">
+
+                            <span class="flex items-center gap-2">
+                              <span aria-hidden="true">{group.emoji}</span>
+                              <span>{group.title}</span>
+                              <span class="text-sm font-normal text-[#7c6b5d]">
+                                ({group.items.length})
+                              </span>
+                            </span>
+
+                            <span
+                                    class="chevron shrink-0 text-xl transition-transform duration-200 group-open:rotate-180"
+                                    aria-hidden="true"
+                            >
+                              ⌄
+                            </span>
+
+                        </summary>
+
+                        <div class="border-t border-[#eee0d2] bg-white px-4 py-2 sm:px-5">
+
+                            {group.items.map((item) => (
+                                    <div class="menu-row">
+
+                                        <div class="min-w-0">
+                                            <p class="font-semibold">
+                                                {item.name}
+                                            </p>
+
+                                            {item.description && (
+                                                    <p class="mt-1 text-sm text-[#776d65]">
+                                                        {item.description}
+                                                    </p>
+                                            )}
+                                        </div>
+
+                                        <span class="menu-price">
+                                          {item.price}
+                                        </span>
+
+                                    </div>
+                            ))}
+
+                        </div>
+
+                    </details>
+            ))}
+
+        </div>
+
+        <p class="mt-5 text-sm leading-relaxed text-[#6c6259]">
+            Las órdenes consumidas en el puesto se sirven preparadas.
+            Para llevar o a domicilio, los mariscos en concha se entregan
+            abiertos, listos para degustar, con las salsas por separado.
+            Los productos vendidos cerrados por kilo o pieza se indican
+            expresamente.
+        </p>
+
+    </div>
+</section>

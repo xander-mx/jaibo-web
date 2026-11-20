@@ -1,0 +1,128 @@
+
+<div
+        id="cookie-consent"
+        role="dialog"
+        aria-label="Preferencias de cookies"
+        aria-describedby="cookie-description"
+        class="fixed inset-x-4 bottom-4 z-50 mx-auto hidden max-w-xl rounded-2xl border border-[#EAD9C5] bg-[#FFF8ED] p-5 text-[#252525] shadow-2xl md:p-6"
+>
+    <div class="flex items-start justify-between gap-4">
+        <h2 class="text-lg font-extrabold">
+            Tu privacidad nos importa
+        </h2>
+
+        <button
+                id="cookies-close"
+                type="button"
+                aria-label="Cerrar preferencias de cookies"
+                class="hidden rounded-lg px-2 py-1 text-xl font-bold text-[#252525] hover:bg-[#F3E8D8]"
+        >
+            ×
+        </button>
+    </div>
+
+    <p id="cookie-description" class="mt-2 text-sm leading-relaxed">
+        Utilizamos tecnologías necesarias para el funcionamiento del sitio.
+        Con tu permiso, también podremos utilizar cookies de análisis
+        para conocer cómo se utiliza nuestra página y mejorarla.
+        Puedes aceptar o rechazar las cookies opcionales.
+        Consulta nuestro
+        <a
+                href="/aviso-de-privacidad/"
+                class="font-semibold text-[#C75C0D] underline"
+        >
+            aviso de privacidad
+        </a>.
+    </p>
+
+    <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:justify-end">
+        <button
+                id="cookies-reject"
+                type="button"
+                class="rounded-xl border border-[#252525] px-5 py-3 text-sm font-bold hover:bg-[#252525] hover:text-white"
+        >
+            Rechazar cookies
+        </button>
+
+        <button
+                id="cookies-accept"
+                type="button"
+                class="rounded-xl bg-[#F47B20] px-5 py-3 text-sm font-bold text-white hover:bg-[#D9650E]"
+        >
+            Aceptar cookies
+        </button>
+    </div>
+</div>
+
+<script>
+    const STORAGE_KEY = 'eljaibo-cookie-consent';
+
+    type ConsentChoice = 'accepted' | 'rejected';
+
+    function readConsent(): ConsentChoice | null {
+        try {
+            const value = localStorage.getItem(STORAGE_KEY);
+            return value === 'accepted' || value === 'rejected'
+                ? value
+                : null;
+        } catch {
+            return null;
+        }
+    }
+
+    function saveConsent(choice: ConsentChoice): void {
+        try {
+            localStorage.setItem(STORAGE_KEY, choice);
+        } catch {
+            // Si el almacenamiento está bloqueado, no se guarda la preferencia.
+        }
+    }
+
+
+    function initCookieConsent(): void {
+        const banner = document.getElementById('cookie-consent');
+        const accept = document.getElementById('cookies-accept');
+        const reject = document.getElementById('cookies-reject');
+        const close = document.getElementById('cookies-close');
+
+        if (!banner || !accept || !reject || !close) return;
+
+        function showBanner(): void {
+            banner?.classList.remove('hidden');
+            close?.classList.remove('hidden');
+        }
+
+        function hideBanner(): void {
+            banner?.classList.add('hidden');
+        }
+
+        function choose(choice: ConsentChoice): void {
+            saveConsent(choice);
+            hideBanner();
+
+            window.dispatchEvent(
+                new CustomEvent('eljaibo:consent-changed', {
+                    detail: { analytics: choice === 'accepted' },
+                })
+            );
+        }
+
+        const savedChoice = readConsent();
+
+        if (savedChoice === null) {
+            banner.classList.remove('hidden');
+            close.classList.add('hidden');
+        } else {
+            hideBanner();
+        }
+
+        accept.addEventListener('click', () => choose('accepted'));
+        reject.addEventListener('click', () => choose('rejected'));
+        close.addEventListener('click', hideBanner);
+
+        window.addEventListener('eljaibo:open-cookie-settings', showBanner);
+    }
+
+
+    initCookieConsent();
+</script>

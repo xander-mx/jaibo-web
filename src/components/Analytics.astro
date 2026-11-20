@@ -1,0 +1,55 @@
+
+<script>
+    const GTM_ID = 'GTM-WJ8M4TRT';
+    const CONSENT_KEY = 'eljaibo-cookie-consent';
+
+    let gtmLoaded = false;
+
+    function hasAnalyticsConsent(): boolean {
+        try {
+            return localStorage.getItem(CONSENT_KEY) === 'accepted';
+        } catch {
+            return false;
+        }
+    }
+
+    function loadGTM(): void {
+        if (gtmLoaded || !hasAnalyticsConsent()) return;
+
+        gtmLoaded = true;
+
+        const w = window as typeof window & {
+            dataLayer?: Record<string, unknown>[];
+        };
+
+        w.dataLayer = w.dataLayer || [];
+        w.dataLayer.push({
+            'gtm.start': Date.now(),
+            event: 'gtm.js',
+        });
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
+
+        document.head.appendChild(script);
+    }
+
+    function initAnalytics(): void {
+        if (hasAnalyticsConsent()) {
+            loadGTM();
+        }
+
+        window.addEventListener('eljaibo:consent-changed', () => {
+            if (hasAnalyticsConsent()) {
+                loadGTM();
+            } else if (gtmLoaded) {
+                // GTM no se puede descargar de forma fiable una vez ejecutado.
+                // Recargamos la página para aplicar el rechazo.
+                window.location.reload();
+            }
+        });
+    }
+
+    initAnalytics();
+</script>

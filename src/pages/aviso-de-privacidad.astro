@@ -1,0 +1,206 @@
+
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const privacyEmail = 'privacidad@mariscoseljaibo.com';
+---
+
+<BaseLayout
+        title="Aviso de privacidad | Desconchadero El Jaibo"
+        description="Conoce cómo Desconchadero El Jaibo protege y utiliza los datos personales de sus clientes."
+        canonical="https://mariscoseljaibo.com/aviso-de-privacidad/"
+        showBusinessSchema={false}
+>
+    <Header />
+
+    <main class="bg-[#FFF8ED] px-4 py-12 text-[#252525] md:py-20">
+        <article class="mx-auto max-w-3xl">
+            <a
+                    href="/"
+                    class="mb-8 inline-block text-sm font-semibold text-[#C75C0D] hover:underline"
+            >
+                ← Volver al inicio
+            </a>
+
+            <h1 class="mb-4 text-3xl font-extrabold md:text-4xl">
+                Aviso de privacidad
+            </h1>
+
+            <p class="mb-10 text-sm text-gray-600">
+                Última actualización: 12 de noviembre de 2026
+            </p>
+
+            <div class="space-y-9 leading-8">
+
+                <section>
+                    <h2 class="mb-3 text-xl font-bold">1. Identidad y domicilio del responsable</h2>
+                    <p>
+                        Alba Ruth Rentería Reyes, persona física propietaria del negocio
+                        denominado comercialmente Desconchadero El Jaibo, es responsable
+                        del tratamiento y protección de los datos personales de sus clientes.
+                    </p>
+                    <p class="mt-3">
+                        Domicilio de contacto: Calle Francisco de Ayza 324,
+                        frente al local 108, colonia San Felipe, C. P. 44380,
+                        Guadalajara, Jalisco, México.
+                    </p>
+                    <p class="mt-3">
+                        Correo electrónico:
+                        <a href={`mailto:${privacyEmail}`} class="font-semibold text-[#C75C0D] underline">
+                            {privacyEmail}
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="mb-3 text-xl font-bold">2. Datos personales que podemos recabar</h2>
+                    <p>
+                        Cuando una persona solicita información, realiza un pedido o
+                        se comunica con nosotros, podemos recibir los siguientes datos:
+                    </p>
+                    <ul class="mt-3 list-disc space-y-1 pl-6">
+                        <li>Nombre proporcionado por el cliente.</li>
+                        <li>Número de teléfono o WhatsApp.</li>
+                        <li>Dirección e indicaciones de entrega, cuando solicite servicio a domicilio.</li>
+                        <li>Productos solicitados y detalles necesarios para atender el pedido.</li>
+                        <li>Información incluida voluntariamente en mensajes o consultas.</li>
+                    </ul>
+                    <p class="mt-3">
+                        No solicitamos datos personales sensibles para la prestación
+                        ordinaria de nuestros servicios.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="mb-3 text-xl font-bold">3. Finalidades del tratamiento</h2>
+                    <p>Utilizamos los datos personales para:</p>
+                    <ul class="mt-3 list-disc space-y-1 pl-6">
+                        <li>Responder consultas y solicitudes de información.</li>
+                        <li>Registrar, preparar y dar seguimiento a pedidos.</li>
+                        <li>Coordinar la recolección de productos en el establecimiento.</li>
+                        <li>Organizar entregas a domicilio cuando estén disponibles.</li>
+                        <li>Comunicarnos sobre disponibilidad, costos y estado de los pedidos.</li>
+                        <li>Atender aclaraciones relacionadas con nuestros productos y servicios.</li>
+                        <li>Cumplir las obligaciones legales aplicables.</li>
+                    </ul>
+                    <p class="mt-3">
+                        Estas finalidades son necesarias para atender las solicitudes
+                        y prestar los servicios requeridos por nuestros clientes.
+                    </p>
+                    <p class="mt-3">
+                        No utilizaremos los datos de contacto para enviar publicidad
+                        directa sin contar con una base legal aplicable y ofrecer
+                        los mecanismos correspondientes para oponerse a dicho uso.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="mb-3 text-xl font-bold">4. Comunicación de datos a terceros</h2>
+                    <p>
+                        Cuando sea necesario para realizar una entrega, podremos
+                        compartir con la persona encargada del reparto los datos
+                        indispensables para localizar al cliente y entregar su pedido.
+                    </p>
+                    <p class="mt-3">
+                        También utilizamos servicios externos de comunicación y ubicación,
+                        como WhatsApp y Google Maps, que cuentan con sus propias
+                        políticas de privacidad. El uso de dichos servicios puede
+                        implicar el tratamiento de información por sus proveedores.
+                    </p>
+                    <p class="mt-3">
+                        No comercializamos los datos personales de nuestros clientes.
+                        Cualquier transferencia adicional se realizará conforme
+                        a la legislación aplicable.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="mb-3 text-xl font-bold">5. Derechos ARCO</h2>
+                    <p>
+                        Las personas titulares de datos personales pueden solicitar
+                        el acceso, rectificación, cancelación u oposición al tratamiento
+                        de sus datos, conforme a la legislación aplicable.
+                    </p>
+                    <p class="mt-3">
+                        Para presentar una solicitud, escribe a
+                        <a href={`mailto:${privacyEmail}`} class="font-semibold text-[#C75C0D] underline">
+                            {privacyEmail}
+                        </a>
+                        e incluye:
+                    </p>
+                    <ul class="mt-3 list-disc space-y-1 pl-6">
+                        <li>Nombre de la persona titular.</li>
+                        <li>Medio para recibir una respuesta.</li>
+                        <li>Descripción clara de los datos y del derecho que desea ejercer.</li>
+                        <li>Información que permita localizar los datos relacionados con su solicitud.</li>
+                    </ul>
+                    <p class="mt-3">
+                        Podremos solicitar información razonable para acreditar la identidad
+                        o representación de la persona solicitante. Las solicitudes se
+                        atenderán dentro de los plazos previstos por la ley.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="mb-3 text-xl font-bold">6. Revocación del consentimiento y limitación de uso</h2>
+                    <p>
+                        Cuando legalmente proceda, puedes solicitar la revocación
+                        de tu consentimiento o limitar el uso y divulgación de
+                        tus datos personales mediante el correo electrónico indicado.
+                    </p>
+                    <p class="mt-3">
+                        Algunas solicitudes podrían estar sujetas a obligaciones
+                        legales de conservación o a la necesidad de concluir
+                        servicios previamente solicitados.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="mb-3 text-xl font-bold">7. Cookies y herramientas de terceros</h2>
+                    <p>
+                        Nuestro sitio puede utilizar tecnologías necesarias para
+                        su funcionamiento y servicios externos para mostrar
+                        información de ubicación y facilitar el contacto.
+                    </p>
+                    <p class="mt-3">
+                        Cuando se habiliten herramientas de medición como Google Analytics
+                        o de publicidad como Google Ads, actualizaremos la información
+                        sobre las tecnologías utilizadas y ofreceremos los controles
+                        de consentimiento correspondientes.
+                    </p>
+                    <p class="mt-3">
+                        Los servicios externos, incluidos los mapas integrados,
+                        pueden tratar información técnica conforme a sus
+                        propias políticas de privacidad.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="mb-3 text-xl font-bold">8. Seguridad y conservación</h2>
+                    <p>
+                        Adoptamos medidas razonables para proteger los datos personales
+                        contra acceso, uso, alteración o divulgación no autorizados.
+                        Conservamos los datos durante el tiempo necesario para
+                        cumplir las finalidades informadas y las obligaciones legales
+                        que resulten aplicables.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="mb-3 text-xl font-bold">9. Cambios al aviso de privacidad</h2>
+                    <p>
+                        Este aviso podrá actualizarse cuando cambien nuestros
+                        servicios, las tecnologías utilizadas o las disposiciones
+                        legales aplicables. La versión vigente estará disponible
+                        en esta misma página.
+                    </p>
+                </section>
+
+            </div>
+        </article>
+    </main>
+
+    <Footer />
+</BaseLayout>

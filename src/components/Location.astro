@@ -1,0 +1,101 @@
+
+---
+import { site } from '../data/site';
+---
+
+<section id="ubicacion" class="section bg-[#fff8ed]">
+    <div class="container">
+
+        <div class="grid items-start gap-9 lg:grid-cols-[0.85fr_1.15fr]">
+
+            <!-- Información de ubicación -->
+            <div>
+                <p class="eyebrow">Ubicación</p>
+
+                <h2 class="section-title mt-2">
+                    Visítanos en el Mercado del Mar de la 34
+                </h2>
+
+                <p class="mt-5 text-lg">
+                    {site.locationHint}
+                </p>
+
+                <p class="muted mt-4 text-sm">
+                    Dirección registrada: {site.address}.
+                </p>
+
+                <div class="mt-6 rounded-2xl border border-[#ead8c2] bg-white p-5">
+                    <h3 class="text-lg font-extrabold">
+                        Horario de atención
+                    </h3>
+
+                    <p class="mt-2 font-semibold text-[#252525]">
+                        {site.opening}
+                    </p>
+
+                    <p class="muted mt-2 text-sm">
+                        Ven a disfrutar nuestros mariscos frescos,
+                        preparados a tu gusto.
+                    </p>
+                </div>
+
+                <div class="mt-6 flex flex-wrap gap-3">
+
+                    <a
+                            class="btn btn-orange"
+                            href={site.maps}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                    >
+                        📍 Cómo llegar
+                    </a>
+
+                    <a
+                            class="btn border-2 border-[#252525] bg-white text-[#252525] transition-colors duration-200 hover:bg-[#252525] hover:text-white"
+                            href={`tel:+${site.phoneE164}`}
+                    >
+                        ☎ Llamar
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Acceso directo a la ubicación exacta -->
+
+            <!-- Mapa de Google Maps -->
+            <div class="overflow-hidden rounded-3xl border border-[#e8d8c7] bg-white shadow-sm">
+
+                <div class="h-105 w-full md:h-125">
+                    <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1319.7607488844628!2d-103.32311525303925!3d20.675798647387733!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b1f6390fcd15%3A0x506eecfa930d4767!2sDesconchadero%20El%20Jaibo!5e0!3m2!1ses!2smx!4v1794537204840!5m2!1ses!2smx"
+                            title="Ubicación de Desconchadero El Jaibo en Google Maps"
+                            class="h-full w-full border-0"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            allowfullscreen
+                    ></iframe>
+                </div>
+
+                <div class="p-5 text-center">
+                    <p class="text-sm text-[#6c6259]">
+                        Estamos por fuera del Mercado del Mar de la 34.
+                        Utiliza nuestra ubicación directa para llegar al puesto correcto.
+                    </p>
+
+                    <a
+                            href={site.maps}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-4 inline-block font-bold text-[#bb570f] underline"
+                    >
+                        Abrir en Google Maps ↗
+                    </a>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</section>

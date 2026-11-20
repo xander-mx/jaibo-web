@@ -1,0 +1,242 @@
+
+---
+import { site } from '../data/site';
+import { reviews } from '../data/reviews';
+---
+
+<section id="resenas" class="bg-[#FFF3E2] py-16">
+    <div class="container">
+
+        <div class="mb-10 text-center">
+            <p class="eyebrow">Opiniones de nuestros clientes</p>
+
+            <h2 class="section-title mt-2">
+                Lo que dicen de El Jaibo
+            </h2>
+
+            <p class="muted mx-auto mt-3 max-w-xl">
+                Conoce las experiencias de quienes ya nos visitaron.
+            </p>
+        </div>
+
+        <div
+                id="reviews-carousel"
+                class="mx-auto max-w-212.5"
+                aria-roledescription="carrusel"
+                aria-label="Reseñas de clientes"
+        >
+            <div class="overflow-hidden rounded-2xl">
+                <div
+                        id="reviews-track"
+                        class="flex transition-transform duration-500 ease-in-out"
+                >
+                    {reviews.map((review) => (
+                            <article
+                                    class="w-full shrink-0 px-1"
+                                    aria-label={`Reseña de ${review.author}`}
+                            >
+                                <div class="relative flex min-h-65 flex-col justify-between overflow-hidden rounded-2xl border border-[#ead8c2] bg-white p-7 shadow-md sm:p-10">
+
+
+                                    <div>
+                                        <div class="mb-5 flex items-center justify-between gap-3">
+
+                                            {review.rating !== null ? (
+                                                    <p
+                                                            class="text-2xl tracking-[.12em] text-[#D58B08]"
+                                                            aria-label={`${review.rating} de 5 estrellas`}
+                                                    >
+                                                        {'★'.repeat(review.rating)}
+                                                    </p>
+                                            ) : (
+                                                    <span></span>
+                                            )}
+
+                                            <span
+                                                    class="select-none font-serif text-6xl leading-none text-[#E9CDB2]"
+                                                    aria-hidden="true"
+                                            >
+                                              ”
+                                            </span>
+                                        </div>
+
+                                        <blockquote class="text-lg font-normal leading-relaxed text-[#252525] sm:text-xl">
+                                            “{review.text}”
+                                        </blockquote>
+                                    </div>
+
+                                    <div class="mt-7 border-t border-[#F0E1D1] pt-5">
+
+                                        <div class="flex items-center gap-3">
+
+                                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#FFF0DC] font-black text-[#B65A17]">
+                                                {review.author
+                                                    .split(' ')
+                                                    .slice(0, 2)
+                                                    .map((name) => name.charAt(0))
+                                                    .join('')
+                                                    .toUpperCase()}
+                                            </div>
+
+                                            <div class="min-w-0">
+                                                <p class="font-bold leading-snug text-[#252525]">
+                                                    {review.author}
+                                                </p>
+
+                                                <p class="mt-1 text-xs text-[#786A5D]">
+                                                    Reseña de Google Maps
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                        {review.url && (
+                                                <a
+                                                        href={review.url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        class="mt-4 inline-flex text-sm font-bold text-[#B65A17] underline-offset-4 hover:underline"
+                                                >
+                                                    Ver reseña original en Google Maps ↗
+                                                </a>
+                                        )}
+
+                                    </div>
+
+
+                                </div>
+                            </article>
+                    ))}
+                </div>
+            </div>
+
+            <div class="mt-6 flex items-center justify-center gap-5">
+
+                <button
+                        id="reviews-prev"
+                        type="button"
+                        class="rounded-full border border-[#d8b99b] bg-white px-4 py-2 font-bold text-[#252525] transition-colors hover:bg-[#ffe5c2]"
+                        aria-label="Reseña anterior"
+                >
+                    ←
+                </button>
+
+                <span
+                        id="reviews-counter"
+                        class="text-sm font-semibold text-[#66594D]"
+                        aria-live="off"
+                >
+          1 de {reviews.length}
+        </span>
+
+                <button
+                        id="reviews-next"
+                        type="button"
+                        class="rounded-full border border-[#d8b99b] bg-white px-4 py-2 font-bold text-[#252525] transition-colors hover:bg-[#ffe5c2]"
+                        aria-label="Siguiente reseña"
+                >
+                    →
+                </button>
+
+            </div>
+        </div>
+
+        <div class="mt-10 text-center">
+            <a
+                    class="btn btn-orange"
+                    href={site.review}
+                    target="_blank"
+                    rel="noopener noreferrer"
+            >
+                ⭐ Dejar una reseña en Google
+            </a>
+
+            <p class="muted mt-4 text-sm">
+                Tu opinión auténtica ayuda a más personas a conocernos.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    const carousel = document.querySelector<HTMLElement>('#reviews-carousel');
+    const track = document.querySelector<HTMLElement>('#reviews-track');
+    const prev = document.querySelector<HTMLButtonElement>('#reviews-prev');
+    const next = document.querySelector<HTMLButtonElement>('#reviews-next');
+    const counter = document.querySelector<HTMLElement>('#reviews-counter');
+
+    if (carousel && track && prev && next && counter) {
+        const slides = Array.from(track.children) as HTMLElement[];
+        const total = slides.length;
+        const reduceMotion = window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+        );
+
+        let current = 0;
+        let interval: number | undefined;
+
+        const showSlide = (index: number) => {
+            if (!total) return;
+
+            current = (index + total) % total;
+
+            track.style.transform = `translateX(-${current * 100}%)`;
+            counter.textContent = `${current + 1} de ${total}`;
+
+            slides.forEach((slide, i) => {
+                if (i === current) {
+                    slide.removeAttribute('inert');
+                } else {
+                    slide.setAttribute('inert', '');
+                }
+            });
+        };
+
+        const stopAutoPlay = () => {
+            if (interval !== undefined) {
+                window.clearInterval(interval);
+                interval = undefined;
+            }
+        };
+
+        const startAutoPlay = () => {
+            stopAutoPlay();
+
+            if (total < 2 || reduceMotion.matches) return;
+
+            interval = window.setInterval(() => {
+                if (!document.hidden) {
+                    showSlide(current + 1);
+                }
+            }, 6000);
+        };
+
+        prev.addEventListener('click', () => {
+            showSlide(current - 1);
+            stopAutoPlay();
+        });
+
+        next.addEventListener('click', () => {
+            showSlide(current + 1);
+            stopAutoPlay();
+        });
+
+        carousel.addEventListener('mouseenter', stopAutoPlay);
+        carousel.addEventListener('mouseleave', startAutoPlay);
+        carousel.addEventListener('focusin', stopAutoPlay);
+        carousel.addEventListener('focusout', (event) => {
+            if (
+                !(event.relatedTarget instanceof Node) ||
+                !carousel.contains(event.relatedTarget)
+            ) {
+                startAutoPlay();
+            }
+        });
+
+        reduceMotion.addEventListener('change', startAutoPlay);
+
+        showSlide(0);
+        startAutoPlay();
+    }
+</script>

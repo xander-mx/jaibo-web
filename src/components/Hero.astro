@@ -1,0 +1,62 @@
+
+---
+import { site, whatsappUrl } from '../data/site';
+---
+
+<section id="inicio" class="relative isolate overflow-hidden bg-[#211b17] text-white">
+
+    <!-- Fotografía principal: reemplazar por una imagen real del aguachile -->
+    <div
+            class="absolute inset-0 -z-10 bg-cover bg-center opacity-45"
+            style="background-image:url('/images/aguachile-temporal.png')"
+    ></div>
+
+    <!-- Degradado para mejorar la lectura del texto -->
+    <div
+            class="absolute inset-0 -z-10 bg-linear-to-r from-[#171411] via-[#171411]/80 to-transparent"
+    ></div>
+
+    <div class="container flex min-h-142.5 items-center py-20 md:min-h-152.5">
+        <div class="max-w-162.5">
+
+            <p class="mb-4 text-sm font-black tracking-[.15em] text-[#f6c445]">
+                DESCONCHADERO EL JAIBO · GUADALAJARA
+            </p>
+
+            <h1 class="text-[clamp(2.5rem,5vw,4.4rem)] font-black leading-[1.08] tracking-[-.045em]">
+                Mariscos frescos, preparados
+                <span class="text-[#ff923b]">a tu gusto</span>
+            </h1>
+
+            <p class="mt-6 max-w-lg text-lg leading-relaxed text-[#f8efe8]">
+                Aguachiles, ostiones, pata de mula, ceviches, tostadas y nuestro
+                tradicional Jaivaso. Visítanos cerca del Mercado del Mar de la 34.
+            </p>
+
+            <p class="mt-4 font-semibold text-[#f6c445]">
+                {site.opening}
+            </p>
+
+            <div class="mt-7 flex flex-wrap gap-3">
+                <a
+                    class="btn btn-orange"
+                    href={site.maps}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    📍 Cómo llegar
+                </a>
+
+                <a
+                    class="btn btn-outline"
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Pedir por WhatsApp
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
