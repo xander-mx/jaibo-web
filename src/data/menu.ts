@@ -63,9 +63,12 @@ export const menu: MenuGroup[] = [
 ];
 export const highlights = [
   {name:'Aguachile de camarón',price:'Tostada $50',icon:'🍋',photo:null},
-  {name:'Ostiones en concha',price:'Orden desde $80',icon:'🦪',photo:null},
-  {name:'Jaivaso',price:'Desde $80',icon:'🍤',photo:null},
-  {name:'Pata de mula',price:'Orden desde $80',icon:'🐚',photo:null},
+  {name:'Ostiones en concha',price:'Orden desde $80',icon:'🦪',photo:'/images/ostiones.webp'},
+  {name:'Jaivaso',price:'Desde $80',icon:'🍤',photo:'/images/jaivaso.webp'},
+  {name:'Pata de mula',price:'Orden desde $80',icon:'🐚',photo:'/images/patamula.webp'},
   {name:'Tostada Especial',price:'$90',icon:'🌮',photo:'/images/tostada-especial.jpg'},
-  {name:'Callo de hacha',price:'$200 por 100 g',icon:'🐙',photo:null}
+  {name:'Callo de hacha',price:'$200 por 100 g',icon:'🐙',photo:null},
+  {name:'Tostitos con aguachile',price:'$120',icon:'🐙',photo:'/images/tostitos.jpeg'},
+  {name:'Ostión de piedra',price:'$100',icon:'🐙',photo:'/images/ostion_piedra.jpg'},
+  {name:'Almeja Reina',price:'$80',icon:'🐙',photo:'/images/almeja_reina.jpeg'},
 ];

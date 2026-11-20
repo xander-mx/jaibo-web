@@ -65,20 +65,39 @@ import { site } from '../data/site';
             <!-- Mapa de Google Maps -->
             <div class="overflow-hidden rounded-3xl border border-[#e8d8c7] bg-white shadow-sm">
 
-                <div class="h-105 w-full md:h-125">
-                    <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1319.7607488844628!2d-103.32311525303925!3d20.675798647387733!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b1f6390fcd15%3A0x506eecfa930d4767!2sDesconchadero%20El%20Jaibo!5e0!3m2!1ses!2smx!4v1794537204840!5m2!1ses!2smx"
-                            title="Ubicación de Desconchadero El Jaibo en Google Maps"
-                            class="h-full w-full border-0"
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"
-                            allowfullscreen
-                    ></iframe>
+                <div
+                        id="jaibo-map-container"
+                        class="relative flex h-105 w-full items-center justify-center bg-[#f5eadc] p-0 text-center md:h-125"
+                >
+                    <div id="jaibo-map-placeholder" class="max-w-sm">
+                        <div class="mb-4 text-5xl" aria-hidden="true">📍</div>
+
+                        <h3 class="text-xl font-extrabold text-[#252525]">
+                            Encuéntranos en Google Maps
+                        </h3>
+
+                        <p class="mt-3 text-sm leading-6 text-[#6c6259]">
+                            Estamos en el exterior del Mercado del Mar de la 34.
+                            Puedes visualizar nuestra ubicación exacta en el mapa.
+                        </p>
+
+                        <button
+                                id="jaibo-load-map"
+                                type="button"
+                                class="btn btn-orange mt-5"
+                        >
+                            Ver mapa
+                        </button>
+
+                        <p class="mt-3 text-xs text-[#6c6259]">
+                            Al visualizar el mapa, se cargará contenido de Google Maps.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="p-5 text-center">
                     <p class="text-sm text-[#6c6259]">
-                        Estamos por fuera del Mercado del Mar de la 34.
+                        Estamos en el exterior del Mercado del Mar de la 34.
                         Utiliza nuestra ubicación directa para llegar al puesto correcto.
                     </p>
 
@@ -99,3 +118,26 @@ import { site } from '../data/site';
 
     </div>
 </section>
+
+<script>
+    const mapUrl =
+        'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1319.7607488844628!2d-103.32311525303925!3d20.675798647387733!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b1f6390fcd15%3A0x506eecfa930d4767!2sDesconchadero%20El%20Jaibo!5e0!3m2!1ses!2smx!4v1794537204840!5m2!1ses!2smx';
+
+    const loadMapButton = document.getElementById('jaibo-load-map');
+    const mapContainer = document.getElementById('jaibo-map-container');
+
+    loadMapButton?.addEventListener('click', () => {
+        if (!mapContainer) return;
+
+        const iframe = document.createElement('iframe');
+
+        iframe.src = mapUrl;
+        iframe.title = 'Ubicación de Desconchadero El Jaibo en Google Maps';
+        iframe.className = 'h-full w-full border-0';
+        iframe.loading = 'eager';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.allowFullscreen = true;
+
+        mapContainer.replaceChildren(iframe);
+    });
+</script>

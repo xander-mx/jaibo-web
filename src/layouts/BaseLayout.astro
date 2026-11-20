@@ -23,7 +23,18 @@ const jsonLd={
  image:'https://mariscoseljaibo.com/images/logo.png',telephone:'+52 33 1527 1922',
  address:{'@type':'PostalAddress',streetAddress:'Calle Francisco de Ayza 324, frente al local 108',addressLocality:'Guadalajara',addressRegion:'Jalisco',postalCode:'44380',addressCountry:'MX'},
  hasMap:site.maps,sameAs:[site.instagram],
- openingHoursSpecification:[5,6,0].map(day=>({'@type':'OpeningHoursSpecification',dayOfWeek:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][day],opens:'09:00',closes:'17:00'})),
+    openingHoursSpecification: [
+        {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: [
+                'https://schema.org/Friday',
+                'https://schema.org/Saturday',
+                'https://schema.org/Sunday'
+            ],
+            opens: '09:00',
+            closes: '17:00'
+        }
+    ],
  servesCuisine:'Mariscos',priceRange:'$'
 };
 ---
@@ -38,6 +49,30 @@ const jsonLd={
         <meta property="og:type" content="website"/>
         <meta property="og:title" content={title}/><meta property="og:description" content={description}/>
         <meta property="og:url" content={canonical}/>
+        <meta
+                property="og:image"
+                content="https://mariscoseljaibo.com/images/og-eljaibo.webp"
+        />
+        <meta
+                property="og:image:width"
+                content="1200"
+        />
+        <meta
+                property="og:image:height"
+                content="630"
+        />
+        <meta
+                property="og:image:alt"
+                content="Desconchadero El Jaibo - Jaivaso y mariscos frescos en Guadalajara"
+        />
+
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:title" content={title}/>
+        <meta name="twitter:description" content={description}/>
+        <meta
+                name="twitter:image"
+                content="https://mariscoseljaibo.com/images/og-eljaibo.webp"
+        />
         <link rel="icon" type="image/png" href="/images/logo.png"/>
         {showBusinessSchema && (
             <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
